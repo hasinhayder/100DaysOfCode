@@ -12,7 +12,7 @@ type Circle = {
 const pi: number = 3.1415_9265_3589_7932_38 // yes you can use underscores to make a long number readable
 
 //type narrowing using property check
-function getArea(shape: Rectangle | Circle): number {
+const getArea: Function = (shape: Rectangle | Circle): number => {
   //we are accepting Rectangle or Circle types
   if ("radius" in shape) {
     //so this is shape is of Circle type
