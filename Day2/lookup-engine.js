@@ -1,4 +1,4 @@
-// 100OfDaysCode - Day 2: Display Word Meanings on DoubleClick in any HTML file on the browser
+// 100DaysOfCode - Day 2: Display Word Meanings on DoubleClick in any HTML file on the browser
 // Add this script in your HTML file as <script src='lookup-engine.js'></script>
 // Open developer console
 // Doubleclick on any word :)
@@ -6,11 +6,11 @@
 class TinyLookup {
   engage() {
     const that = this
-    document.ondblclick = function () {
-      var selection = (document.selection && document.selection.createRange().text) || 
+    document.addEventListener("dblclick", function () {
+      const selection = (document.selection && document.selection.createRange().text) || 
         (window.getSelection && window.getSelection().toString())
       that.lookup(selection)
-    }
+    })
   }
 
   lookup(word) {
