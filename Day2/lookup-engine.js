@@ -18,16 +18,16 @@ class TinyLookup {
     fetch(url)
       .then((response) => (response.ok ? response.json() : Promise.reject()))
       .then((data) => {
-        console.log(`%c${word}`, `background: #FFDC00; color: #000000; font-size: 14px; padding: 5px;`)
-        data[0]?.meanings.map((meaning) => {
-          meaning.definitions.map((def) => {
+        console.log(`%c${word}`, 'background: #FFDC00; color: #000000; font-size: 14px; padding: 5px;')
+        data[0].meanings.forEach((meaning) => {
+          meaning.definitions.forEach((def) => {
             console.log(def.definition)
           })
         })
         console.log("\n")
       })
-      .catch(() => {
-        console.log(`%c unknown word ${word}`, `background: #FF0000; color: #FFFFFF; font-size: 14px; padding: 5px;`)
+      .catch((error) => {
+        console.log(`%c unknown word ${word}`, 'background: #FF0000; color: #FFFFFF; font-size: 14px; padding: 5px;')
       })
   }
 }
