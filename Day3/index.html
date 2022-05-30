@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Alarm Clock</title>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="container mx-auto max-w-2xl" x-data="alarmEngine">
+        <div class="p-10 w-full flex justify-center">
+            <input type="time" @keyup.enter="addAlarm()" x-model="time" type="text" class="border-gray-500 border-2 p-2 mr-5 w-96" />
+            <button @click="addAlarm()" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-10">Add</button>
+        </div>
+        <div class="mr-10">
+            <template x-for="(alarm, index) in alarms">
+                <div class="py-10 px-20 mb-2 border border-gray-500 flex justify-between" :class="{'bg-red-100':alarm.play}">
+                    <h1 x-text="alarm.time" class="text-3xl"></h1>
+                    <button @click="deleteAlarm(index)" class="bg-red-500 hover:bg-blue-700 text-white py-2 px-10">Remove</button>
+                </div>
+            </template>
+        </div>
+        <audio x-ref="player" src="https://cdn.pixabay.com/download/audio/2021/09/27/audio_91211934db.mp3"></audio>
+    </div>
+</body>
+<script>
+    const alarmEngine = {
+        time: "",
+        alarms: [],
+        addAlarm() {
+            this.alarms.push({ time: this.time, play: false });
+        },
+        deleteAlarm(index) {
+            this.alarms.splice(index, 1)
+        },
+        init() {
+            this.time = this.getCurrentTime()
+            setInterval(() => {
+                this.alarms.forEach(alarm=>{
+                    if(alarm.time==this.getCurrentTime()){
+                        alarm.play=true;
+                        this.$refs.player.play()
+                    }
+                })
+            }, 5000);
+        },
+        getCurrentTime() {
+            const now = new Date();
+            return now.getHours() + ":" + now.getMinutes()
+        }
+    }
+</script>
+</html>
