@@ -46,8 +46,7 @@
             }, 5000);
         },
         getCurrentTime() {
-            const now = new Date();
-            return now.toLocaleTimeString('it-IT').slice(0,5)
+            return new Date().toLocaleTimeString('it-IT').slice(0,5)
         }
     }
 </script>
