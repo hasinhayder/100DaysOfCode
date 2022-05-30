@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Alarm Clock</title>
     <script defer src="//unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -36,9 +37,9 @@
         init() {
             this.time = this.getCurrentTime()
             setInterval(() => {
-                this.alarms.forEach(alarm=>{
-                    if(alarm.time==this.getCurrentTime()){
-                        alarm.play=true;
+                this.alarms.forEach(alarm => {
+                    if (alarm.time == this.getCurrentTime()) {
+                        alarm.play = true;
                         this.$refs.player.play()
                     }
                 })
@@ -46,8 +47,9 @@
         },
         getCurrentTime() {
             const now = new Date();
-            return (now.getHours() % 12 || 12) + ":" + now.getMinutes()
+            return now.toLocaleTimeString('it-IT').slice(0,5)
         }
     }
 </script>
+
 </html>
