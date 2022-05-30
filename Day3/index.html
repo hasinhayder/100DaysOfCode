@@ -33,6 +33,7 @@
         },
         deleteAlarm(index) {
             this.alarms.splice(index, 1)
+            this.$refs.player.pause()
         },
         init() {
             this.time = this.getCurrentTime()
