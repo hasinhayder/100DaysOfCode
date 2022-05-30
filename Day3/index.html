@@ -46,7 +46,12 @@
         },
         getCurrentTime() {
             const now = new Date();
-            return now.getHours() + ":" + now.getMinutes()
+            let hr = now.getHours();
+            let min = now.getMinutes();
+            // add a zero in front of numbers<10
+            hr = hr < 10 ? "0" + hr : hr;
+            min = min < 10 ? "0" + min : min;
+            return hr + ":" + min
         }
     }
 </script>
